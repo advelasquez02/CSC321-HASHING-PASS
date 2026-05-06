@@ -13,7 +13,7 @@ def hashSHA256(string):
 def hashSHA256Trunc(string, num_bits):
     string = string.encode("utf-8")
     h = SHA256.new(string).digest()
-
+    #have to manipulate bits to get powers of 2 (e.g 8,10,12,14...48,50)
     num_bytes = (num_bits + 7) // 8
     value = int.from_bytes(h[:num_bytes], "big")
 
@@ -40,9 +40,9 @@ def findCollision(num_bits):
             return inputs, elapsed
 
         checkedStrings[hashNum] = msg
-
-        if i % 1000000 == 0 and i != 0:
-            print(f"Checked {i} messages...")
+        #print every so often - sanity check
+        # if i % 1000000 == 0 and i != 0:
+        #     print(f"Checked {i} messages...")
 
         i += 1
 
@@ -50,10 +50,7 @@ def findCollision(num_bits):
 
 if __name__ == '__main__':
     results = []
-
+    #input all bit sized and print
     for bits in range(8, 51, 2):
         inputs, elapsed = findCollision(bits)
-        results.append((bits, inputs, elapsed))
         print(bits, inputs, elapsed)
-
-
