@@ -1,9 +1,11 @@
 # import nltk
 import time
+
+import nltk
 from bcrypt import *
 from nltk.corpus import words
 #uncomment and run this before first run
-# nltk.download("words")
+nltk.download("words")
 from multiprocessing import Pool
 
 
@@ -57,5 +59,6 @@ if __name__ == "__main__":
 
     print("Runtime:", round(end - start, 2), "seconds")
     print("Runtime:", round((end - start) / 60, 2), "minutes")
+
 
 
